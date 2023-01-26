@@ -1,0 +1,26 @@
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    // load position data from file
+    string position;
+    ifstream position_file("position.txt");
+    getline(position_file, position);
+
+    // pass position data to the process
+    pid_t pid = fork();
+    if (pid == 0) {
+        // child process
+        execl("/path/to/executable", "executable", position.c_str(), (char *)0);
+    } else {
+        // parent process
+        wait(NULL);
+    }
+    return 0;
+}
