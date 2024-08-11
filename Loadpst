@@ -22,5 +22,5 @@ int main() {
         // parent process
         wait(NULL);
     }
-    return 0;
+    return 0;0
 }
